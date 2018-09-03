@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TripService {
+public class TripService implements NewcoService<TripDto> {
 
     private final TripRepository tripRepository;
 
@@ -16,22 +16,27 @@ public class TripService {
         this.tripRepository = tripRepository;
     }
 
+    @Override
     public List<TripDto> findAll() {
         return tripRepository.findAll();
     }
 
+    @Override
     public TripDto findById(Long id) {
         return tripRepository.findById(id);
     }
 
+    @Override
     public void save(TripDto trip) {
         tripRepository.save(trip);
     }
 
+    @Override
     public void delete(Long id) {
         tripRepository.delete(id);
     }
 
+    @Override
     public void update(TripDto newTrip) {
         tripRepository.update(newTrip);
     }
