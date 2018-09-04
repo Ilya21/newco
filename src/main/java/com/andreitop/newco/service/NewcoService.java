@@ -3,7 +3,6 @@ package com.andreitop.newco.service;
 import java.util.List;
 
 public interface NewcoService<T> {
-
     List<T> findAll();
 
     T findById(Long id);

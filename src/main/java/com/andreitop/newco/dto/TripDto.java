@@ -1,6 +1,9 @@
 package com.andreitop.newco.dto;
 
+
 import java.io.Serializable;
+import java.util.Objects;
+
 
 public class TripDto implements Serializable {
 
@@ -41,5 +44,21 @@ public class TripDto implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TripDto tripDto = (TripDto) o;
+        return Objects.equals(id, tripDto.id) &&
+                Objects.equals(origin, tripDto.origin) &&
+                Objects.equals(destination, tripDto.destination) &&
+                Objects.equals(price, tripDto.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, origin, destination, price);
     }
 }
