@@ -1,21 +1,13 @@
 package com.andreitop.newco.controller;
 
-import com.andreitop.newco.common.ApiConstant;
-import com.andreitop.newco.dto.TripDto;
+import com.andreitop.newco.BaseTest;
 import com.andreitop.newco.service.TripService;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Collections;
-import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -27,52 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
 @WebMvcTest(TripsController.class)
-public class TripsControllerTest {
-
-    private static final String TRIP_JSON = "{\"origin\": \"LED\" , \"destination\":\"MOW\", \"price\" : 12256}";
-    private static final String NEW_TRIP_JSON = "{\"origin\": \"EDIN\" , \"destination\":\"LA\", \"price\" : 5555}";
-    private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
-    private static final String API_URL = ApiConstant.API_V_1 + "/trips";
-    private static final long TRIP_DTO_ID = 1;
-    private static final int WANTED_NUMBER_OF_INVOCATIONS = 1;
-
+public class TripsControllerTest extends BaseTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private TripService tripService;
-
-
-    private List<TripDto> allTrips;
-    private TripDto tripDto;
-    private TripDto tripDtoFromJson;
-    private TripDto tripDtoForUpdate;
-
-    @Before
-    public void setUp() {
-        tripDto = new TripDto();
-        tripDto.setId(1L);
-        tripDto.setOrigin("MOW");
-        tripDto.setDestination("LED");
-        tripDto.setPrice(4232);
-
-        tripDtoFromJson = new TripDto();
-        tripDtoFromJson.setId(null);
-        tripDtoFromJson.setOrigin("LED");
-        tripDtoFromJson.setDestination("MOW");
-        tripDtoFromJson.setPrice(12256);
-
-        tripDtoForUpdate = new TripDto();
-        tripDtoForUpdate.setId(null);
-        tripDtoForUpdate.setOrigin("EDIN");
-        tripDtoForUpdate.setDestination("LA");
-        tripDtoForUpdate.setPrice(5555);
-
-        allTrips = Collections.singletonList(tripDto);
-    }
 
     @Test
     public void whenPostTrip_thenCreateTrip() throws Exception {
