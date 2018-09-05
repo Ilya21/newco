@@ -1,6 +1,8 @@
 package com.andreitop.newco.dto;
 
-
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -9,9 +11,15 @@ public class TripDto implements Serializable {
 
     private static final long serialVersionUID = 5914366185889783660L;
 
+    @Min(0)
     private Long id;
+    @NotNull
+    @Size(min = 2, max = 50)
     private String origin;
+    @NotNull
     private String destination;
+    @NotNull
+    @Min(0)
     private Integer price;
 
     public Long getId() {
