@@ -1,6 +1,7 @@
 package com.andreitop.newco.service;
 
 import com.andreitop.newco.dto.TripDto;
+import com.andreitop.newco.exception.TripNotFoundException;
 import com.andreitop.newco.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,13 @@ public class TripService implements NewcoService<TripDto> {
 
     @Override
     public TripDto findById(Long id) {
-        return tripRepository.findById(id);
+        TripDto trip = tripRepository.findById(id);
+
+        if(trip == null){
+            throw new TripNotFoundException("There isn't trip with id = " + id);
+        }
+
+        return trip;
     }
 
     @Override

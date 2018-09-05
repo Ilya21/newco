@@ -1,8 +1,6 @@
 package com.andreitop.newco.dto;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,15 +9,17 @@ public class TripDto implements Serializable {
 
     private static final long serialVersionUID = 5914366185889783660L;
 
-    @Min(0)
+    @Positive
     private Long id;
     @NotNull
-    @Size(min = 2, max = 50)
+    @Size(min = 2, message = "origin should have atleast 2 characters")
+    @Pattern(regexp = "\\w+|\\d+", message = "Enter correct airport code")
     private String origin;
     @NotNull
+    @Pattern(regexp = "\\w+|\\d+", message = "Enter correct airport code")
     private String destination;
     @NotNull
-    @Min(0)
+    @Positive
     private Integer price;
 
     public Long getId() {
