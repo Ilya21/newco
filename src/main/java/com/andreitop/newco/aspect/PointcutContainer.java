@@ -23,9 +23,4 @@ public class PointcutContainer {
     public void repositorySave(){
         //
     }
-
-    @Pointcut("execution(* com.andreitop.newco.repository.TripRepository.throwingExc())")
-    public void throwingExc() {
-        //
-    }
 }

@@ -47,13 +47,4 @@ public class LoggingAspect {
         Object pointThis = joinPoint.getThis();
         logger.info(MARKER + "Some controller method was called. Target: " + pointTarget + ". This: " + pointThis);
     }
-
-    @AfterThrowing(pointcut = "com.andreitop.newco.aspect.PointcutContainer.throwingExc()", throwing = "exception")
-    public void throwingExc(JoinPoint joinPoint, Exception exception){
-        String className = joinPoint.getSignature().getDeclaringTypeName();
-        String methodName = joinPoint.getSignature().getName();
-        logger.info(MARKER + "Method " + className + "." + methodName + " threw exception with message " + exception.getMessage());
-    }
-
-
 }
