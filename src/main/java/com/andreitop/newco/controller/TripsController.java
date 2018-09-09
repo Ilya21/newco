@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(ApiConstant.API_V_1 + "/trips")
-public class TripsController {
+public class TripsController implements NewcoController {
 
     private final TripService tripService;
 
@@ -29,6 +29,7 @@ public class TripsController {
         this.tripService = tripService;
     }
 
+    @Override
     @GetMapping
     public ResponseEntity<List<TripDto>> findAll() {
         return new ResponseEntity<>(tripService.findAll(), HttpStatus.OK);

@@ -39,4 +39,8 @@ public class TripRepository  {
                 .findFirst()
                 .ifPresent(t -> trips.set(trips.indexOf(t), newTrip));
     }
+
+    public void throwingExc() throws Exception {
+        throw new Exception("Something wrong");
+    }
 }

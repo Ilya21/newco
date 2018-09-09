@@ -52,4 +52,14 @@ public class TripDto implements Serializable {
     public void setPrice(Integer price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "{\"TripDto\":{"
+                + "\"id\":\"" + id + "\""
+                + ",\"origin\":\"" + origin + "\""
+                + ",\"destination\":\"" + destination + "\""
+                + ",\"price\":\"" + price + "\""
+                + "}}";
+    }
 }
